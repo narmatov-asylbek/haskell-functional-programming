@@ -32,3 +32,20 @@ instance Printable () where
 
 instance (Printable a, Printable b) => Printable(a, b) where
     toString (p1, p2) = "(" ++ toString p1 ++ "," ++ toString p2 ++ ")"
+
+
+class KnownToGork a where
+    stomp :: a -> a
+    doesEnrageGork :: a -> Bool
+
+class KnownToMork a where
+    stab :: a -> a
+    doesEnrageMork :: a -> Bool
+
+class (KnownToGork a, KnownToMork a) => KnownToGorkAndMork a where
+    stompOrStab :: a -> a
+    stompOrStab a
+      | doesEnrageMork a && doesEnrageGork a = stomp $ stab a
+      | doesEnrageGork a = stab a
+      | doesEnrageMork a = stomp a
+      | otherwise = a
