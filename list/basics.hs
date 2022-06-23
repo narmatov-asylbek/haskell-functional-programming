@@ -95,7 +95,7 @@ module Basics where
             isEqual (x : xs) (y : ys) = (x == y) && isEqual xs ys
             isEqual _ _ = False
 
-    
+
 
     customZip :: [a] -> [b] -> [(a, b)]
     customZip [] _ = []
@@ -105,7 +105,55 @@ module Basics where
 
     customUnzip :: [(a, b)] -> ([a], [b])
     customUnzip [] = ([], [])
-    customUnzip ((x, y) : xys) = 
+    customUnzip ((x, y) : xys) =
         let (xs, ys) = customUnzip xys
         in
             (x : xs, y : ys)
+
+
+    -- Needs to be implemented
+
+    -- sum3 :: Num a => [a] -> [a] -> [a] -> [a]
+    -- full3 [] = [0, 0, 0]
+    -- full3 [x] = [x, 0, 0]
+    -- full3 [x, y] = [x, y, 0]
+    -- full3 x = x
+
+    -- sumTuple :: Num a => [(a, a, a)] -> [a]
+    -- sumTuple [] = []
+    -- sumTuple ((a, b, c): xs) = a + b + c : sumTuple xs 
+
+    -- sum3 [] [] [] = []
+    -- sum3 x y z = findSum (zip3 (full3 x) (full3 y) (full3 z) )
+    --     where
+    --         findSum :: Num a => [(a, a, a)] -> [a]
+    --         findSum [] = []
+    --         findSum x = sumTuple x
+            
+
+    -- Needs to be implemented
+    -- groupElems :: Eq a => [a] -> [[a]]
+
+
+
+    customTake :: Int -> [a] -> [a]
+    customTake n _ | n <= 0 = []
+    customTake _ [] = []
+    customTake n (x : xs) = x : customTake (n - 1) xs
+
+
+    customDrop :: Int -> [a] -> [a]
+    customDrop n xs | n <= 0 = xs
+    customDrop _ [] = []
+    customDrop n (_: xs) = customDrop (n - 1) xs
+
+
+    customSplit :: Int -> [a] -> ([a], [a])
+    customSplit n xs = (customTake n xs, customDrop n xs)
+
+
+    getByIndex :: Int -> [a] -> a
+    getByIndex n xs | n < 0 = error "Index out of range"
+    getByIndex _ [] = error "Index out of range"
+    getByIndex 0 (x : xs) = x
+    getByIndex n (x : xs) = getByIndex (n - 1) xs
