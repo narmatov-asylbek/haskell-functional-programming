@@ -21,3 +21,10 @@ module Generator where
 
     iterate :: (a -> a) -> a -> [a]
     iterate f x = x : iterate f (f x)
+
+
+    xs = [1..20]
+    ys = [ x ^ 2| x <- xs, x ^ 2 < 200]
+
+    -- change :: (Ord a, Num a) => a -> [[a]]
+    -- change = []
