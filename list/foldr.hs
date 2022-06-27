@@ -7,3 +7,18 @@ module Foldr where
 
     sumList :: [Integer] -> Integer
     sumList = foldr (+) 0
+
+    concatList = foldr (++) []
+
+    sumPositiveSquares :: [Integer] -> Integer
+    sumPositiveSquares = foldr f 0 where
+        f x s | x > 0 = x ^ 2 + s
+              | otherwise = s
+
+    lengthList = foldr (\_ s -> s + 1) 0
+
+    sumOdd = foldr (+) 0 . filter odd
+
+    some = foldr (:) []
+
+    another = foldr const undefined
