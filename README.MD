@@ -1,0 +1,1 @@
+I wanted to learn more about functional programming. But Haskell is too complicated to conentrate on main principles of fp.
